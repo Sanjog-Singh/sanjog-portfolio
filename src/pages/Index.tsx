@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ExternalLink, Download, Mail, Phone, Linkedin } from "lucide-react";
 
 const Index = () => {
@@ -51,8 +52,14 @@ const Index = () => {
   ];
 
   const certifications = [
-    "Industrial Artificial Intelligence with Cloud Computing – Edunet Foundation",
-    "Applied Artificial Intelligence – Edunet Foundation"
+    {
+      title: "Industrial Artificial Intelligence with Cloud Computing – Edunet Foundation",
+      image: "/lovable-uploads/125158e1-5356-4f14-9d43-b942b6dba444.png"
+    },
+    {
+      title: "Applied Artificial Intelligence – Edunet Foundation",
+      image: "/lovable-uploads/5c5e99e3-e5e1-447b-b4ee-4c0aa5528577.png"
+    }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -71,12 +78,12 @@ const Index = () => {
           <div className="hidden md:flex space-x-6">
             {[
               { name: 'Home', id: 'home' },
-              { name: 'About', id: 'about' },
+              { name: 'About Me', id: 'about' },
               { name: 'Projects', id: 'projects' },
               { name: 'Experience', id: 'experience' },
               { name: 'Blogs', id: 'blogs' },
               { name: 'Certifications', id: 'certifications' },
-              { name: 'Contact', id: 'contact' }
+              { name: 'Contact Me', id: 'contact' }
             ].map((item) => (
               <button
                 key={item.id}
@@ -91,17 +98,19 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-blue/10 to-electric-blue/10 z-0"></div>
-        <Card className="relative z-10 max-w-4xl mx-auto p-8 bg-white/90 backdrop-blur-sm border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 animate-fade-in">
-          <CardContent className="text-center p-8">
-            <div className="mb-8">
-              <img 
-                src="/lovable-uploads/1f2eaee7-1a2b-41a7-8971-b018e8f26944.png" 
-                alt="Sanjog Singh" 
-                className="w-48 h-48 rounded-full mx-auto mb-6 border-4 border-white shadow-2xl animate-float object-cover"
-              />
-            </div>
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Part - Profile Picture */}
+          <div className="flex justify-center">
+            <img 
+              src="/lovable-uploads/1f2eaee7-1a2b-41a7-8971-b018e8f26944.png" 
+              alt="Sanjog Singh" 
+              className="w-80 h-80 md:w-96 md:h-96 rounded-full border-4 border-white shadow-2xl animate-float object-cover"
+            />
+          </div>
+          
+          {/* Right Part - Content */}
+          <div className="text-center md:text-left">
             <h1 className="text-5xl md:text-7xl font-bold text-deep-blue mb-4">
               Sanjog Singh
             </h1>
@@ -117,8 +126,8 @@ const Index = () => {
               <Download className="mr-2 h-5 w-5" />
               Download My Resume
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </section>
 
       {/* About Me Section */}
@@ -296,14 +305,27 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-center text-deep-blue mb-16">Certifications</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {certifications.map((cert, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-l-teal shadow-lg animate-fade-in bg-gradient-to-r from-teal/5 to-transparent">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl">🏆</div>
-                    <p className="text-gray-700 font-medium">{cert}</p>
+              <Dialog key={index}>
+                <DialogTrigger asChild>
+                  <Card className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-l-teal shadow-lg animate-fade-in bg-gradient-to-r from-teal/5 to-transparent cursor-pointer">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3">
+                        <div className="text-2xl">🏆</div>
+                        <p className="text-gray-700 font-medium">{cert.title}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+                  <div className="flex justify-center">
+                    <img 
+                      src={cert.image} 
+                      alt={cert.title}
+                      className="w-full h-auto max-w-full rounded-lg shadow-lg"
+                    />
                   </div>
-                </CardContent>
-              </Card>
+                </DialogContent>
+              </Dialog>
             ))}
           </div>
         </div>
