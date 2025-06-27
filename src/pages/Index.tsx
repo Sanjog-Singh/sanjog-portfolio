@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -350,7 +349,7 @@ const Index = () => {
                 <h3 className="text-xl font-semibold mb-2 text-white">Email</h3>
                 <a 
                   href="mailto:singhsanjog197@gmail.com" 
-                  className="text-lg hover:underline transition-all duration-300 text-white/90 hover:text-white"
+                  className="text-lg hover:underline transition-all duration-300 text-white/90 hover:text-white break-all"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -365,7 +364,7 @@ const Index = () => {
                 <h3 className="text-xl font-semibold mb-2 text-white">LinkedIn</h3>
                 <a 
                   href="https://linkedin.com/in/singhsanjog" 
-                  className="text-lg hover:underline transition-all duration-300 text-white/90 hover:text-white"
+                  className="text-lg hover:underline transition-all duration-300 text-white/90 hover:text-white break-all"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
