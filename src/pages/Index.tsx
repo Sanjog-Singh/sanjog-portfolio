@@ -141,13 +141,13 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  Tech is Love, So I'm Techie! I'm currently pursuing Computer Science Engineering with specialization in Data Science at ITM Vocational University, Vadodara.
+                  I'm a recent Computer Science graduate with a strong foundation in Python and Machine Learning, actively seeking a full-time role as a Data Scientist. My journey into tech began early — back in fifth grade, I would explore my father's laptop out of curiosity, unaware that those moments would shape my future. Despite initial expectations to pursue Chemical Engineering, I followed my passion and chose Computer Science, a decision that truly paid off when I discovered Data Science in college.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  I completed a one-month Internship at Sparks To Ideas, focusing on Python (basic to advanced), including libraries like Pandas, NumPy, and Matplotlib.
+                  What drew me in was seeing how the math I had always enjoyed came alive through real-world applications — from predictive models to intelligent systems that quietly power our everyday lives. Since then, I've been driven by the excitement of uncovering insights from data and turning them into meaningful impact.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  My interests include Data Science, Machine Learning, and Python Programming.
+                  I value clean code, collaboration, and continuous learning — and I'm eager to join a team where I can grow while contributing to data-driven solutions. When I'm not diving into datasets, you'll likely find me watching movies or lost in music.
                 </p>
               </CardContent>
             </Card>
