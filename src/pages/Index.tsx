@@ -66,6 +66,61 @@ const Index = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const downloadResume = async () => {
+    try {
+      // Create a new jsPDF instance
+      const { jsPDF } = await import('jspdf');
+      const pdf = new jsPDF();
+      
+      // Load the resume image
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      
+      img.onload = () => {
+        // Calculate dimensions to fit the image on the PDF page
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        
+        // Calculate aspect ratios
+        const imgAspectRatio = img.width / img.height;
+        const pdfAspectRatio = pdfWidth / pdfHeight;
+        
+        let finalWidth, finalHeight;
+        
+        if (imgAspectRatio > pdfAspectRatio) {
+          // Image is wider relative to PDF
+          finalWidth = pdfWidth;
+          finalHeight = pdfWidth / imgAspectRatio;
+        } else {
+          // Image is taller relative to PDF
+          finalHeight = pdfHeight;
+          finalWidth = pdfHeight * imgAspectRatio;
+        }
+        
+        // Center the image on the page
+        const x = (pdfWidth - finalWidth) / 2;
+        const y = (pdfHeight - finalHeight) / 2;
+        
+        // Add image to PDF
+        pdf.addImage(img, 'PNG', x, y, finalWidth, finalHeight);
+        
+        // Save the PDF
+        pdf.save('Sanjog_Singh_Resume.pdf');
+      };
+      
+      img.onerror = () => {
+        console.error('Failed to load resume image');
+        alert('Failed to download resume. Please try again.');
+      };
+      
+      img.src = '/lovable-uploads/36180e47-b146-45b7-afc4-24aeb5393a64.png';
+      
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      alert('Failed to download resume. Please try again.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 font-poppins">
       {/* Navigation Header */}
@@ -120,6 +175,7 @@ const Index = () => {
               "Tech is Love, So I'm Techie!"
             </p>
             <Button 
+              onClick={downloadResume}
               className="bg-electric-blue hover:bg-electric-blue/90 text-white px-8 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               <Download className="mr-2 h-5 w-5" />
